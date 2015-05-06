@@ -1,3 +1,7 @@
+% Slower version which does vary laser intensity. Goes really slowly though
+%
+% Matthew Sheen
+
 clc
 clear all
 close all
@@ -8,18 +12,18 @@ ymin = 4;
 ymax = 95;
 xmax = 198
 
-desiredLength = 80; %desired engraving length in mm
+desiredLength = 100; %desired engraving length in mm
 resolution = 0.1; %Attempted resolution in mm
 speed = 1000; %movement speed in mm/min
 minThresh = 30; %minimum darkness worth turning the laser on for 
 beamWidth = 0.2; %Guess of laser beam width in mm
 beamPixels = beamWidth/resolution;
-intensityMult = 1;
+intensityMult = 0.4;
 
 xoffset = 0; %How much upper left corner of print is offset from the origin.
 yoffset = 0;
-xoffset2 = 100; %How much upper left corner of print is offset from the origin.
-yoffset2 = 0;
+% xoffset2 = 100; %How much upper left corner of print is offset from the origin.
+% yoffset2 = 0;
 
 pic = rgb2gray(imread('zelda.jpg')); %Read image, convert to grayscale
 
@@ -35,7 +39,7 @@ resizedPic = imresize(pic, scaling);
 
 yborder = 5;
 yoffset2 = (ymax-ymin)/2 + ymin-resolution*ysize/2 + yborder;
-xborder = 20;
+xborder = 80;
 xoffset2 = xmax-xborder-resolution*xsize;
 
 image(resizedPic)
