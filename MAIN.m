@@ -16,6 +16,7 @@ ymin = 0;
 ymax = 95;
 xmax = 150;
 
+resizeIt = true;
 desiredLength = 90; %desired engraving length in mm
 resolution = 0.1; %Attempted resolution in mm
 speedOff = 1000*3; %movement speed when laser is off in mm/min
@@ -32,16 +33,18 @@ yoffset = 0;
 % yoffset2 = 0;
 
 % pic = rgb2gray(imread('fractal4.png')); %Read image, convert to grayscale
-pic = imread('fractal4.png');
+pic = imread('swirl.png');
 %FLIP IMAGE?
 pic = fliplr(pic);
-
+if(resizeIt)
 pixelLength = desiredLength/resolution;
 
 actualLength = size(pic,2);
 scaling = pixelLength/actualLength; %Scale the image such that each pixel represents the minimum movement for the defined scale
 resizedPic = imresize(pic, scaling);
-
+else
+    resizedPic = pic;
+end
 [ysize,xsize] = size(resizedPic) %Rescaled pixel dimensions of the image.
 
 yborder = 5;
